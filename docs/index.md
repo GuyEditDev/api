@@ -44,9 +44,9 @@ header = {
 }
 r = post("https://canary.discord.com/api/v9/hypesquad/online", headers = header, json = data)
   ```
-  1: Bravery HypeSquad (Purple)
-  2: Brillance de la HypeSquad (Red) 
-  3: Balance de la HypeSquad (Cyan)
+ 1. Bravery HypeSquad (Purple)
+ 2. Brillance de la HypeSquad (Red) 
+ 3. Balance de la HypeSquad (Cyan)
 
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/GuyEditDev/api/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
