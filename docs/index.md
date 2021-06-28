@@ -7,7 +7,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 ### Joiner Server
 
 Requests for join a server:
-  Discord API: https://discordapp.com/api/v6/invite/ + link of server
+  Discord API:  [https://discordapp.com/api/v6/invite/](https://discordapp.com/api/v6/invite/) + link of server
   Code Python:
   ```markdown
 import requests
@@ -29,7 +29,7 @@ For more details see [GitHub Flavored Markdown](https://guides.github.com/featur
 ### Team Hypesquad Requests
 
 Requests to join hypesquad team:
-  Discord API: https://canary.discord.com/api/v9/hypesquad/online
+  Discord API: [https://canary.discord.com/api/v9/hypesquad/online](https://canary.discord.com/api/v9/hypesquad/online)
   Code Python:
   ```markdown
 from os import system
