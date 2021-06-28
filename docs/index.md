@@ -1,14 +1,9 @@
 ## Welcome to API Documentation of Discord Python
-
-You can use the [editor on GitHub](https://github.com/GuyEditDev/api/edit/index/docs/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
 ### Joiner Server
 
 Requests for join a server:
   Discord API:  [https://discordapp.com/api/v6/invite/](https://discordapp.com/api/v6/invite/) + link of server
-  Code Python:
+  *Code Python*: 
   ```markdown
 import requests
 
@@ -30,7 +25,7 @@ For more details see [GitHub Flavored Markdown](https://guides.github.com/featur
 
 Requests to join hypesquad team:
   Discord API: [https://canary.discord.com/api/v9/hypesquad/online](https://canary.discord.com/api/v9/hypesquad/online)
-  Code Python:
+  *Code Python*:
   ```markdown
 from os import system
 from requests import post
