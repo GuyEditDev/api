@@ -1,70 +1,96 @@
-## Welcome to API Documentation of Discord Python
-### Joiner Server
+# Welcome to API Documentation of Discord Python
 
-Requests for join a server:
-  Discord API:  [https://discordapp.com/api/v6/invite/](https://discordapp.com/api/v6/invite/) + link of server
-  *Code Python*: 
-  ```markdown
+### Guilds joiner
+
+Request to join a Discord server :
+``https://discord.com/api/v6/invite/INVITE_CODE``
+
+*Python code*:
+  ```py
 import requests
 
-link = input('Discord Invite Link: ')
-if len(link) > 6:
-    link = link[19:]
-apilink = "https://discordapp.com/api/v6/invite/" + str(link)
 
-print (link)
-headers={
-'Authorization': "YOUR TOKEN"
-}
-requests.post(apilink, headers=headers)
-  ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Team Hypesquad Requests
-
-Requests to join hypesquad team:
-  Discord API: [https://canary.discord.com/api/v9/hypesquad/online](https://canary.discord.com/api/v9/hypesquad/online)
-  *Code Python*:
-  ```markdown
-from os import system
-from requests import post
-system("cls")
-data = {
-    "house_id": 1
-}
-header = {
-    'Authorization': "YOUR TOKEN",
-    'Content-Type': 'application/json'
-}
-r = post("https://canary.discord.com/api/v9/hypesquad/online", headers = header, json = data)
-  ```
- 1. Bravery HypeSquad (Purple)
- 2. Brillance de la HypeSquad (Red) 
- 3. Balance de la HypeSquad (Cyan)
+# This function must be updated to handle vanity URL links, but still great for new default invitation links.
+def get_invite_code():
+    link = input("Discord Invite Link : ")
+    if link.__len__() > 8:
+        link = link[link.__len__() - 8:]
+    return link
 
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/GuyEditDev/api/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+def api_request(invite, discord_token):
+    endpoint = "https://discord.com/api/v6/invite/" + invite
+    r = requests.post(endpoint, headers = {
+        "Authorization": discord_token
+    })
+    return r
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+def handle_response(response):
+    if response.status_code == 200:
+        print("Guild successfully joined !")
+    elif response.status_code == 403:
+        print("The entered token is invalid or expired !")
+    else:
+        print("The entered invite link is invalid or expired !")
+    return None
 
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+invite = get_invite_code()
+response = api_request(invite, "YOUR_TOKEN")
+handle_response(response)
 ```
+
+<hr>
+
+### Hypesquads
+
+Request to change Hypesquad:
+``https://canary.discord.com/api/v9/hypesquad/online``
+
+*Python code*:
+```py
+import requests
+import random
+
+
+def format_house(color):
+    house_id = None
+    color = color.lower()
+    if color == "purple":
+        house_id = 1
+    elif color == "red":
+        house_id = 2
+    elif color == "cyan":
+        house_id = 3
+    else:
+        house_id = random.random(1, 3)
+    return { "house_id": house_id }
+
+
+def api_request(house_data, discord_token):
+    endpoint = "https://canary.discord.com/api/v9/hypesquad/online"
+    r = requests.post(endpoint, headers = {
+        "Authorization": discord_token,
+        "Content-Type": "application/json"
+    }, json=house_data)
+    return r
+
+
+def handle_response(response):
+    if response.status_code == 200:
+        print("Hypesquad successfully changed !")
+    elif response.status_code == 403:
+        print("The entered token is invalid or expired !")
+    return None
+
+house_data = format_house("red")
+response = api_request(house_data, "YOUR TOKEN")
+handle_response(response)
+```
+
+Houses table :
+| X |   HOUSE   |  COLOR  |
+|---|-----------|---------|
+| 1 |  Bravery  |  Purple |
+| 2 | Brillance |   Red   |
+| 3 |  Balance  |  Cyan   |
